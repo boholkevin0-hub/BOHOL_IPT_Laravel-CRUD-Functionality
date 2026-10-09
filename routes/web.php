@@ -6,13 +6,14 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function() {
+Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+Route::get('/dashboard', [DashboardController::class, 'index']) ->name('dashboard');
+
+Route::resource('patients', PatientController::class);
+
 Route::resource('doctors', DoctorController::class);
 
-Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+Route::resource('appointments', AppointmentController::class);
